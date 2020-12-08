@@ -1,34 +1,35 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ConsoleApp22
+namespace ConsoleApp27
 {
     class Program
     {
         static void Main(string[] args)
         {
-           
-            Console.WriteLine("Wieviele Spiele möchtest du einräumen?");
-            int eingabe = Convert.ToInt16(Console.ReadLine());
+            bool aussteigen = true;
 
-            for (int i = 1; i <= eingabe; i++)
+            Bank.Bankeinrichtung();
+
+            while (aussteigen)
             {
-                Console.WriteLine("Welches Spiel möchtest du deiner Spielesammlung hinzufügen");
-                string name = Console.ReadLine();
+                Console.WriteLine("Möchtest du eine Transaktion anlegen?");
+                Console.WriteLine("Ja/j             Nein/n");
 
-                Console.WriteLine("Wann ist das Spiel herausgekommen");
-                DateTime dt = Convert.ToDateTime(Console.ReadLine());
+                var abfragekey = Console.ReadKey().KeyChar;
 
-                Spiel s = new Spiel(name, dt);
-                
+                switch (abfragekey)
+                {
+                    case 'j':
+                        Console.Clear();
+                        Konto.Transaktionen();
+                        break;
+                    case 'n':
+                        aussteigen = false;
+                        break;
+                    default:
+                        break;
+                }
             }
-
-            Spiel.GibListeAus();
-            
-            Console.ReadLine();
         }
     }
 }
